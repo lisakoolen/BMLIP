@@ -15,7 +15,7 @@ ipynb_files = []
 # Only include ipynb files which are not checkpoints
 ipynb_matcher = re.compile("(?<!checkpoint.)ipynb$")
 
-for (directory, _, files) in os.walk('../lessons/notebooks'):
+for (directory, _, files) in os.walk('lessons/notebooks'):
     for filename in files:
         filepath = Path(directory, filename)
         filepath_str = str(filepath)
@@ -36,7 +36,7 @@ ipynb_files.sort()
 # Some cells can take quite a while to render (most notably the lesson on
 # clustering with Gaussian Mixture Models), so the timeout has to be increased
 # with respect to the default of 30 seconds
-c.ExecutePreprocessor.timeout = 120
+c.ExecutePreprocessor.timeout = 600
 c.FilesWriter.build_directory = build_directory
 c.NbConvertApp.notebooks = ipynb_files
 c.Preprocessor.enabled = True
@@ -108,7 +108,7 @@ def concat_and_clean():
         bundle_file.write(html.tostring(bundle_document).decode('utf-8'))
         bundle_file.close()
 
-        os.system('phantomjs ./print_to_pdf.js bundle/bundle.html')
+        os.system('phantomjs --web-security=no ./print_to_pdf.js bundle/bundle.html')
 
         # The generated PDF file contains incorrect URIs for the table of
         # contents and the backlinks to the items in it. What used to be

@@ -44,7 +44,7 @@ RUN mkdir -p /bundler/lessons /bundler/output && \
     tar --strip-components 1 -xf /tmp/node-v13.8.0-linux-x64.tar.xz -C /opt/node && \
     npm install -g phantomjs-prebuilt --unsafe-perm && \
     cd /bundler && \
-    npm install toc
+    npm install toc webpage mathjax
 
 WORKDIR /bundler/
 

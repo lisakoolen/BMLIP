@@ -2,6 +2,7 @@ var fs = require('fs');
 var system = require('system');
 var toc = require('toc');
 var webpage = require('webpage');
+var MathJax = require('mathjax');
 var page = webpage.create();
 
 var uri = system.args[1];
